@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedido de Casamento</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(45deg, #ff69b4, #d4af37);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            background-blend-mode: overlay;
+        }
+
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+            max-width: 700px;
+            border: 3px solid #ff69b4;
+        }
+
+        h1 {
+            color: #ff1493;
+            margin-bottom: 2rem;
+            font-family: 'Great Vibes', cursive;
+            font-size: 4rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .question {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            font-weight: bold;
+            color: #ff1493;
+            font-family: 'Great Vibes', cursive;
+        }
+
+        .options {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            margin-bottom: 2rem;
+        }
+
+        button {
+            padding: 1.5rem 4rem;
+            border: 3px solid #ff69b4;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: #ff1493;
+            color: white;
+            font-size: 1.5rem;
+            font-family: 'Great Vibes', cursive;
+            letter-spacing: 2px;
+        }
+
+        button:hover {
+            transform: scale(1.1);
+            background: #ff69b4;
+            box-shadow: 0 0 20px rgba(255, 105, 180, 0.5);
+        }
+
+        .mensagem-nao {
+            display: none;
+            position: absolute;
+            background: rgba(255, 20, 147, 0.9);
+            color: white;
+            padding: 1rem;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            z-index: 100;
+        }
+
+        .mensagem-amor {
+            display: none;
+            animation: fadeIn 1.5s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .coracao {
+            font-size: 4rem;
+            color: #ff1493;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+            100% { transform: scale(1); }
+        }
+
+        .historia {
+            font-style: italic;
+            color: #666;
+            margin-top: 30px;
+            line-height: 1.8;
+            font-size: 1.2rem;
+            padding: 20px;
+            background: rgba(255, 105, 180, 0.1);
+            border-radius: 15px;
+        }
+
+        .anel {
+            font-size: 6rem;
+            margin: 1.5rem 0;
+            animation: brilho 3s infinite;
+        }
+
+        @keyframes brilho {
+            0% { text-shadow: 0 0 5px #ff69b4; }
+            50% { text-shadow: 0 0 20px #ff69b4, 0 0 30px #ff69b4; }
+            100% { text-shadow: 0 0 5px #ff69b4; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="pergunta">
+            <h1>Meu amor eterno...</h1>
+            <div class="anel">💍</div>
+            <p class="question">Quer se casar comigo?</p>
+            <div class="options">
+                <button onclick="aceitou()">Sim!</button>
+                <button id="nao" onmouseover="mostrarMensagem(event)">Não</button>
+            </div>
+            <div id="mensagem-nao" class="mensagem-nao">
+                Porque tentou o não? 😢
+            </div>
+        </div>
+
+        <div id="mensagem-amor" class="mensagem-amor">
+            <div class="coracao">❤️</div>
+            <h2 style="font-family: 'Great Vibes', cursive; font-size: 2.5rem; color: #ff1493;">Você me fez a pessoa mais feliz do mundo!</h2>
+            <p style="font-size: 1.3rem; color: #666;">Não consigo imaginar minha vida sem você ao meu lado.</p>
+            <p style="font-size: 1.3rem; color: #666;">Você é meu presente mais precioso, meu amor eterno.</p>
+            <div class="historia">
+                <p>"Desde aquele servidor de BeamNG.drive que eu te conheci e a gente foi criando uma amizade que no fim se tornou esse namoro maravilhoso que surgiu na minha vida"</p>
+            </div>
+            <div class="coracao">❤️</div>
+        </div>
+    </div>
+
+    <script>
+        function mostrarMensagem(event) {
+            const mensagem = document.getElementById('mensagem-nao');
+            mensagem.style.display = 'block';
+            mensagem.style.left = (event.pageX + 10) + 'px';
+            mensagem.style.top = (event.pageY + 10) + 'px';
+        }
+
+        function aceitou() {
+            document.getElementById('pergunta').style.display = 'none';
+            document.getElementById('mensagem-amor').style.display = 'block';
+            
+            const script = document.createElement('script');
+            script.src = 'https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js';
+            script.onload = function() {
+                confetti({
+                    particleCount: 100,
+                    spread: 70,
+                    origin: { y: 0.6 }
+                });
+            };
+            document.body.appendChild(script);
+        }
+    </script>
+</body>
+</html>
